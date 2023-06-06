@@ -2,7 +2,7 @@ import colors from '@/styles/colors'
 import { Flex, Heading } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
 
-const TopBar = () => {
+const NavBar = () => {
   return (
     <>
       <Flex bg={colors.primary[400]} color={colors.secondary[50]}>
@@ -15,4 +15,4 @@ const TopBar = () => {
   )
 }
 
-export default TopBar
+export default NavBar
