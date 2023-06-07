@@ -1,7 +1,7 @@
+import { auth } from '@/config/authFirebase'
 import { User } from '@firebase/auth'
 import { useEffect, useState } from 'react'
 import { useAuthState as useAuthStateOriginal } from 'react-firebase-hooks/auth'
-import { auth } from './authFirebase'
 
 export type AuthState = {
   isSignedIn: boolean

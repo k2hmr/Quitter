@@ -7,7 +7,7 @@ import { useState } from 'react'
 const LoginPage: React.FC<{}> = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { logInWithEmailAndPassword } = useFirebaseAuth()
+  const { signIn } = useFirebaseAuth()
 
   return (
     <Box>
@@ -25,13 +25,7 @@ const LoginPage: React.FC<{}> = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="パスワード"
         />
-        <Button
-          onClick={() => {
-            logInWithEmailAndPassword(email, password)
-          }}
-        >
-          送信する
-        </Button>
+        <Button onClick={() => signIn(email, password)}>送信する</Button>
       </Box>
     </Box>
   )
