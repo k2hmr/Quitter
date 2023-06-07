@@ -2,12 +2,11 @@ import useAuthState from '@/hooks/useAuthState'
 import { useFirebaseAuth } from '@/hooks/useFirebaseAuth'
 import colors from '@/styles/colors'
 import { Box, Button, Flex, Heading } from '@chakra-ui/react'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 const NavBar = () => {
   const { isSignedIn } = useAuthState()
-  const { logout } = useFirebaseAuth()
-  const navigate = useNavigate()
+  const { signOut } = useFirebaseAuth()
 
   return (
     <>
@@ -15,14 +14,7 @@ const NavBar = () => {
         <Heading>3日ダケ</Heading>
         <Box>
           {isSignedIn ? (
-            <Button
-              onClick={() => {
-                logout()
-                navigate('/')
-              }}
-            >
-              ログアウト
-            </Button>
+            <Button onClick={() => signOut()}>ログアウト</Button>
           ) : (
             <Link to={'/login'}>ログイン</Link>
           )}

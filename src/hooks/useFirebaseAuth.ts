@@ -8,5 +8,10 @@ export const useFirebaseAuth = () => {
       navigate('/test'),
     )
   }
-  return { signIn, logout }
+
+  const signOut = () => {
+    logout()
+    navigate('/')
+  }
+  return { signIn, signOut }
 }
