@@ -1,4 +1,4 @@
-import NavBar from '@/components/layout/templates/NavBar'
+import NavBar from '@/components/layout/organisms/NavBar'
 import LoginPage from '@/components/pages/LoginPage'
 import { NotFoundPage } from '@/components/pages/NotFoundPage'
 import { Route, Routes } from 'react-router'

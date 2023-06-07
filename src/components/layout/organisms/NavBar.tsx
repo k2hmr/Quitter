@@ -1,6 +1,6 @@
+import colors from '@/components/layout/styles/colors'
 import useAuthState from '@/hooks/useAuthState'
 import { useFirebaseAuth } from '@/hooks/useFirebaseAuth'
-import colors from '@/styles/colors'
 import { Box, Button, Flex, Heading } from '@chakra-ui/react'
 import { Link, Outlet } from 'react-router-dom'
 

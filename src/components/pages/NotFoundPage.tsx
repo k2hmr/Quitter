@@ -1,8 +1,10 @@
+import { Box, Heading } from '@chakra-ui/react'
+
 export const NotFoundPage = () => {
   return (
     <>
-      <h1>404</h1>
-      <h3>お探しのページは見つかりませんでした。</h3>
+      <Heading>404</Heading>
+      <Box>お探しのページは見つかりませんでした。</Box>
     </>
   )
 }
