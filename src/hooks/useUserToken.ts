@@ -5,6 +5,6 @@ import useAuthState from './useAuthState'
 export const useUserToken = () => {
   const { user } = useAuthState()
   useEffect(() => {
-    user && sendToken(user)
+    user && sendToken()
   }, [user])
 }
