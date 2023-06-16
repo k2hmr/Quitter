@@ -1,9 +1,21 @@
-import { logInWithEmailAndPassword, logout } from '@/services/authService'
+import { authFuncArgs } from '@/model/authFuncArgs'
+import {
+  logInWithEmailAndPassword,
+  logout,
+  registerWithEmailAndPassword,
+} from '@/services/authService'
 import { useNavigate } from 'react-router'
 
 export const useFirebaseAuth = () => {
   const navigate = useNavigate()
-  const signIn = async (email: string, password: string) => {
+  const signUp = async ({ name, email, password }: authFuncArgs) => {
+    if (!name) return
+    await registerWithEmailAndPassword(name, email, password).then(() =>
+      navigate('/test'),
+    )
+  }
+
+  const signIn = async ({ email, password }: authFuncArgs) => {
     await logInWithEmailAndPassword(email, password).then(() =>
       navigate('/test'),
     )
@@ -13,5 +25,5 @@ export const useFirebaseAuth = () => {
     logout()
     navigate('/')
   }
-  return { signIn, signOut }
+  return { signUp, signIn, signOut }
 }
