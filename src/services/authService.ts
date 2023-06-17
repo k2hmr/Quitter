@@ -19,10 +19,12 @@ export const registerWithEmailAndPassword = async (
       email,
       password,
     })
+    return '/test'
   } catch (e) {
     if (e instanceof FirebaseError) {
       console.log(e)
     }
+    return '/signup'
   }
 }
 
@@ -36,10 +38,12 @@ export const logInWithEmailAndPassword = async (
       email,
       password,
     })
+    return '/test'
   } catch (e) {
     if (e instanceof FirebaseError) {
       console.log(e)
     }
+    return '/login'
   }
 }
 

@@ -10,14 +10,14 @@ export const useFirebaseAuth = () => {
   const navigate = useNavigate()
   const signUp = async ({ name, email, password }: authFuncArgs) => {
     if (!name) return
-    await registerWithEmailAndPassword(name, email, password).then(() =>
-      navigate('/test'),
+    await registerWithEmailAndPassword(name, email, password).then((redirect) =>
+      navigate(redirect),
     )
   }
 
   const signIn = async ({ email, password }: authFuncArgs) => {
-    await logInWithEmailAndPassword(email, password).then(() =>
-      navigate('/test'),
+    await logInWithEmailAndPassword(email, password).then((redirect) =>
+      navigate(redirect),
     )
   }
 
