@@ -38,6 +38,14 @@ const AuthForm: React.FC<props> = ({ title, isNewUser, authFunc }) => {
         />
       </Box>
       <Button
+        cursor={
+          (isNewUser ? name && email && password : email && password)
+            ? 'pointer'
+            : 'not-allowed'
+        }
+        disabled={
+          isNewUser ? !name || !email || !password : !email || !password
+        }
         onClick={() => {
           const args = isNewUser
             ? { name, email, password }
