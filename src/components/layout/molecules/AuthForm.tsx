@@ -1,17 +1,27 @@
-import { authFuncArgs } from '@/model/authFuncArgs'
+import { AuthFuncArgs } from '@/model/authFuncArgs'
 import { Box, Button, Flex, Heading, Input } from '@chakra-ui/react'
 import { useState } from 'react'
 
 type props = {
   title: string
   isNewUser: boolean
-  authFunc: (args: authFuncArgs) => Promise<void>
+  authFunc: (args: AuthFuncArgs) => Promise<void>
 }
 
 const AuthForm: React.FC<props> = ({ title, isNewUser, authFunc }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const authFuncArgs = (isNewUser: boolean): AuthFuncArgs =>
+    isNewUser ? { name, email, password } : { email, password }
+  const cursorSetting = (isNewUser: boolean): string =>
+    (isNewUser ? name && email && password : email && password)
+      ? 'pointer'
+      : 'not-allowed'
+  const isDisabled = (isNewUser: boolean): boolean =>
+    isNewUser ? !name || !email || !password : !email || !password
+
   return (
     <Flex justify={'center'} align={'center'} flexDirection={'column'}>
       <Heading>{title}</Heading>
@@ -38,20 +48,9 @@ const AuthForm: React.FC<props> = ({ title, isNewUser, authFunc }) => {
         />
       </Box>
       <Button
-        cursor={
-          (isNewUser ? name && email && password : email && password)
-            ? 'pointer'
-            : 'not-allowed'
-        }
-        disabled={
-          isNewUser ? !name || !email || !password : !email || !password
-        }
-        onClick={() => {
-          const args = isNewUser
-            ? { name, email, password }
-            : { email, password }
-          authFunc(args)
-        }}
+        cursor={cursorSetting(isNewUser)}
+        disabled={isDisabled(isNewUser)}
+        onClick={() => authFunc(authFuncArgs(isNewUser))}
       >
         送信する
       </Button>
