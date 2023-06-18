@@ -1,8 +1,9 @@
 import useAuthState from '@/hooks/useAuthState'
 import { useFirebaseAuth } from '@/hooks/useFirebaseAuth'
 import { useUserToken } from '@/hooks/useUserToken'
-import { Box, Button } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { LogoutButton } from '../atom/Buttons'
+import { Div } from '../atom/Div'
+import { LoginLink } from '../atom/Links'
 
 const AuthSwitch = () => {
   const { isSignedIn } = useAuthState()
@@ -10,13 +11,13 @@ const AuthSwitch = () => {
   useUserToken()
 
   return (
-    <Box>
+    <Div>
       {isSignedIn ? (
-        <Button onClick={() => signOut()}>ログアウト</Button>
+        <LogoutButton onClick={() => signOut()}>ログアウト</LogoutButton>
       ) : (
-        <Link to={'/login'}>ログイン</Link>
+        <LoginLink>ログイン</LoginLink>
       )}
-    </Box>
+    </Div>
   )
 }
 

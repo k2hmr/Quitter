@@ -1,3 +1,5 @@
+import { Div } from '@/components/layout/atom/Div'
+import { Header } from '@/components/layout/atom/Header'
 import useAuthState from '@/hooks/useAuthState'
 import { Navigate, useLocation } from 'react-router'
 
@@ -13,9 +15,9 @@ export const RouterAuthenticatedCheck = (props: Props) => {
 
   if (isLoading)
     return (
-      <div>
-        <p>読み込み中…</p>
-      </div>
+      <Div>
+        <Header>読み込み中…</Header>
+      </Div>
     )
 
   return isSignedIn ? (

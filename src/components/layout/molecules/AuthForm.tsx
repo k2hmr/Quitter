@@ -1,6 +1,10 @@
 import { AuthFuncArgs } from '@/model/authFuncArgs'
-import { Box, Button, Flex, Heading, Input } from '@chakra-ui/react'
 import { useState } from 'react'
+import { SubmitButton } from '../atom/Buttons'
+import { ColumnFlex } from '../atom/CustomFlex'
+import { Div } from '../atom/Div'
+import { Header } from '../atom/Header'
+import { EmailInput, PasswordInput, TextInput } from '../atom/Inputs'
 
 type props = {
   title: string
@@ -23,38 +27,35 @@ const AuthForm: React.FC<props> = ({ title, isNewUser, authFunc }) => {
     isNewUser ? !name || !email || !password : !email || !password
 
   return (
-    <Flex justify={'center'} align={'center'} flexDirection={'column'}>
-      <Heading>{title}</Heading>
-      <Box>
+    <ColumnFlex pos="center">
+      <Header>{title}</Header>
+      <Div>
         {isNewUser && (
-          <Input
-            type="text"
+          <TextInput
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="ニックネーム"
           />
         )}
-        <Input
-          type="text"
+        <EmailInput
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="メールアドレス"
         />
-        <Input
-          type="password"
+        <PasswordInput
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="パスワード"
         />
-      </Box>
-      <Button
+      </Div>
+      <SubmitButton
         cursor={cursorSetting(isNewUser)}
         disabled={isDisabled(isNewUser)}
         onClick={() => authFunc(authFuncArgs(isNewUser))}
       >
         送信する
-      </Button>
-    </Flex>
+      </SubmitButton>
+    </ColumnFlex>
   )
 }
 

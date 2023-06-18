@@ -1,15 +1,15 @@
 import { useFirebaseAuth } from '@/hooks/useFirebaseAuth'
-import { Flex } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { ColumnFlex } from '../layout/atom/CustomFlex'
+import { SignupLink } from '../layout/atom/Links'
 import AuthForm from '../layout/molecules/AuthForm'
 
 const LoginPage: React.FC<{}> = () => {
   const { signIn } = useFirebaseAuth()
   return (
-    <Flex justify={'center'} align={'center'} flexDirection={'column'}>
+    <ColumnFlex pos={'center'}>
       <AuthForm title="ログイン" isNewUser={false} authFunc={signIn} />
-      <Link to={'/signup'}>初めての方はこちら</Link>
-    </Flex>
+      <SignupLink>初めての方はこちら</SignupLink>
+    </ColumnFlex>
   )
 }
 
