@@ -1,10 +1,11 @@
-import { Box, Heading } from '@chakra-ui/react'
+import { Div } from '../layout/atom/Div'
+import { Header } from '../layout/atom/Header'
 
 export const NotFoundPage = () => {
   return (
-    <>
-      <Heading>404</Heading>
-      <Box>お探しのページは見つかりませんでした。</Box>
-    </>
+    <Div>
+      <Header>404</Header>
+      <Div>お探しのページは見つかりませんでした。</Div>
+    </Div>
   )
 }

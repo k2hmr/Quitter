@@ -1,18 +1,17 @@
 import colors from '@/components/layout/styles/colors'
-import { Flex, Heading } from '@chakra-ui/react'
-import { Outlet } from 'react-router-dom'
+import { Header } from '../atom/Header'
+import { OutletForMain } from '../atom/OutletForMain'
+import { RowFlex } from '../molecules/CustomFlex'
 import AuthSwitch from './AuthSwitch'
 
 const NavBar = () => {
   return (
     <>
-      <Flex bg={colors.primary[400]} color={colors.secondary[50]}>
-        <Heading>3日ダケ</Heading>
+      <RowFlex bg={colors.primary[400]} color={colors.secondary[50]}>
+        <Header>3日ダケ</Header>
         <AuthSwitch />
-      </Flex>
-      <main>
-        <Outlet />
-      </main>
+      </RowFlex>
+      <OutletForMain />
     </>
   )
 }
