@@ -8,7 +8,7 @@ type btnProps = {
   children: ReactNode
 }
 
-export const SubmitButton: React.FC<btnProps> = ({
+export const AppButton: React.FC<btnProps> = ({
   cursor,
   disabled,
   onClick,
@@ -16,16 +16,6 @@ export const SubmitButton: React.FC<btnProps> = ({
   ...rest
 }) => (
   <Button cursor={cursor} disabled={disabled} onClick={onClick} {...rest}>
-    {children}
-  </Button>
-)
-
-export const LogoutButton: React.FC<btnProps> = ({
-  onClick,
-  children,
-  ...rest
-}) => (
-  <Button onClick={onClick} {...rest}>
     {children}
   </Button>
 )

@@ -1,14 +1,14 @@
 import { useFirebaseAuth } from '@/hooks/useFirebaseAuth'
-import { ColumnFlex } from '../layout/atom/CustomFlex'
-import { LoginLink } from '../layout/atom/Links'
+import { AppLink } from '../layout/atom/Link'
 import AuthForm from '../layout/molecules/AuthForm'
+import { ColumnFlex } from '../layout/molecules/CustomFlex'
 
 const SignupPage: React.FC<{}> = () => {
   const { signUp } = useFirebaseAuth()
   return (
     <ColumnFlex pos={'center'}>
       <AuthForm title="ユーザー登録" isNewUser={true} authFunc={signUp} />
-      <LoginLink>登録済みの方はこちら</LoginLink>
+      <AppLink to="/login">登録済みの方はこちら</AppLink>
     </ColumnFlex>
   )
 }

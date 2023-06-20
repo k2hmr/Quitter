@@ -1,5 +1,5 @@
-import { Flex } from '@chakra-ui/react'
 import { ReactNode } from 'react'
+import { AppFlex } from '../atom/Flex'
 import { setResponsiveDirection } from '../styles/setResponsive'
 
 type fProps = {
@@ -14,14 +14,13 @@ export const ResponsiveFlex: React.FC<fProps> = ({
   children,
   ...rest
 }) => (
-  <Flex
-    justify={pos}
-    align={pos}
+  <AppFlex
+    pos={pos}
     flexDirection={setResponsiveDirection('row', 'column')}
     {...rest}
   >
     {children}
-  </Flex>
+  </AppFlex>
 )
 
 export const ColumnFlex: React.FC<fProps> = ({
@@ -31,20 +30,13 @@ export const ColumnFlex: React.FC<fProps> = ({
   children,
   ...rest
 }) => (
-  <Flex
-    justify={pos}
-    align={pos}
-    bg={bg}
-    color={color}
-    flexDirection={'column'}
-    {...rest}
-  >
+  <AppFlex pos={pos} bg={bg} color={color} flexDirection={'column'} {...rest}>
     {children}
-  </Flex>
+  </AppFlex>
 )
 
 export const RowFlex: React.FC<fProps> = ({ pos, children, ...rest }) => (
-  <Flex justify={pos} align={pos} flexDirection={'row'} {...rest}>
+  <AppFlex pos={pos} flexDirection={'row'} {...rest}>
     {children}
-  </Flex>
+  </AppFlex>
 )

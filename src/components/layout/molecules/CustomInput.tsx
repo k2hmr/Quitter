@@ -1,5 +1,6 @@
-import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 import { useState } from 'react'
+import { AppButton } from '../atom/Button'
+import { AppInput, AppInputGroup, AppInputRightElement } from '../atom/Input'
 
 type iProps = {
   value?: string | number | readonly string[]
@@ -13,7 +14,7 @@ export const TextInput: React.FC<iProps> = ({
   placeholder,
   ...rest
 }) => (
-  <Input
+  <AppInput
     type={'text'}
     value={value}
     onChange={onChange}
@@ -28,7 +29,7 @@ export const EmailInput: React.FC<iProps> = ({
   placeholder,
   ...rest
 }) => (
-  <Input
+  <AppInput
     type={'email'}
     value={value}
     onChange={onChange}
@@ -47,17 +48,17 @@ export const PasswordInput: React.FC<iProps> = ({
   const handleClick = () => setShow(!show)
 
   return (
-    <InputGroup>
-      <Input
+    <AppInputGroup>
+      <AppInput
         type={show ? 'text' : 'password'}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         {...rest}
       />
-      <InputRightElement>
-        <Button onClick={handleClick}>{show ? '隠す' : '見る'}</Button>
-      </InputRightElement>
-    </InputGroup>
+      <AppInputRightElement>
+        <AppButton onClick={handleClick}>{show ? '隠す' : '見る'}</AppButton>
+      </AppInputRightElement>
+    </AppInputGroup>
   )
 }

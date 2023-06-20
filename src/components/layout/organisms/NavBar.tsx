@@ -1,7 +1,7 @@
 import colors from '@/components/layout/styles/colors'
-import { RowFlex } from '../atom/CustomFlex'
 import { Header } from '../atom/Header'
 import { OutletForMain } from '../atom/OutletForMain'
+import { RowFlex } from '../molecules/CustomFlex'
 import AuthSwitch from './AuthSwitch'
 
 const NavBar = () => {

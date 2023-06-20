@@ -1,10 +1,10 @@
 import { AuthFuncArgs } from '@/model/authFuncArgs'
 import { useState } from 'react'
-import { SubmitButton } from '../atom/Buttons'
-import { ColumnFlex } from '../atom/CustomFlex'
+import { AppButton } from '../atom/Button'
 import { Div } from '../atom/Div'
 import { Header } from '../atom/Header'
-import { EmailInput, PasswordInput, TextInput } from '../atom/Inputs'
+import { ColumnFlex } from './CustomFlex'
+import { EmailInput, PasswordInput, TextInput } from './CustomInput'
 
 type props = {
   title: string
@@ -48,13 +48,13 @@ const AuthForm: React.FC<props> = ({ title, isNewUser, authFunc }) => {
           placeholder="パスワード"
         />
       </Div>
-      <SubmitButton
+      <AppButton
         cursor={cursorSetting(isNewUser)}
         disabled={isDisabled(isNewUser)}
         onClick={() => authFunc(authFuncArgs(isNewUser))}
       >
         送信する
-      </SubmitButton>
+      </AppButton>
     </ColumnFlex>
   )
 }
