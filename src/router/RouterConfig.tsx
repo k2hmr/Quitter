@@ -1,5 +1,6 @@
 import NavBar from '@/components/layout/organisms/NavBar'
 import LoginPage from '@/components/pages/LoginPage'
+import { MyPage } from '@/components/pages/MyPage'
 import { NotFoundPage } from '@/components/pages/NotFoundPage'
 import SignupPage from '@/components/pages/SignupPage'
 import { Route, Routes } from 'react-router'
@@ -17,6 +18,15 @@ export const RouterConfig = () => {
             element={
               <RouterAuthenticatedCheck
                 component={<>ログイン後のページ</>}
+                redirect={'/login'}
+              />
+            }
+          />
+          <Route
+            path="mypage"
+            element={
+              <RouterAuthenticatedCheck
+                component={<MyPage />}
                 redirect={'/login'}
               />
             }
