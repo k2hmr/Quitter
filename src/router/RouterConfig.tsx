@@ -6,6 +6,7 @@ import SignupPage from '@/components/pages/SignupPage'
 import { Route, Routes } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import { RouterAuthenticatedCheck } from './RouterAuthenticateConfig'
+import PostTemplatesListPage from '@/components/pages/PostTemplatesListPage'
 
 export const RouterConfig = () => {
   return (
@@ -17,7 +18,7 @@ export const RouterConfig = () => {
             path="test"
             element={
               <RouterAuthenticatedCheck
-                component={<>ログイン後のページ</>}
+                component={<PostTemplatesListPage />}
                 redirect={'/login'}
               />
             }

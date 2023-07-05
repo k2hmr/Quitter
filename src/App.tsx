@@ -1,7 +1,12 @@
 import { RouterConfig } from './router/RouterConfig'
+import { UserContextProvider } from './provider/UserContextProvider'
 
 function App() {
-  return <RouterConfig />
+  return (
+    <UserContextProvider>
+      <RouterConfig />
+    </UserContextProvider>
+  )
 }
 
 export default App
