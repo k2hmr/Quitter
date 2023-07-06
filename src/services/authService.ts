@@ -15,17 +15,20 @@ export const registerWithEmailAndPassword = async (
 ) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password)
-    await axiosClient.post('/register', {
+    const res = await axiosClient.post('/register', {
       name,
       email,
       password,
     })
-    return '/test'
+    return {
+      redirect: '/test',
+      data: res.data as { message: string; user: User },
+    }
   } catch (e) {
     if (e instanceof FirebaseError) {
       console.log(e)
     }
-    return '/signup'
+    return { redirect: '/signup', data: null }
   }
 }
 
