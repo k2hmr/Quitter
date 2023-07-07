@@ -1,5 +1,6 @@
 import { auth } from '@/config/authFirebase'
 import { axiosClient } from '@/config/axiosClient'
+import { User } from '@/model/User'
 import { FirebaseError } from 'firebase/app'
 import {
   createUserWithEmailAndPassword,
@@ -14,17 +15,20 @@ export const registerWithEmailAndPassword = async (
 ) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password)
-    await axiosClient.post('/register', {
+    const res = await axiosClient.post('/register', {
       name,
       email,
       password,
     })
-    return '/test'
+    return {
+      redirect: '/test',
+      data: res.data as { message: string; user: User },
+    }
   } catch (e) {
     if (e instanceof FirebaseError) {
       console.log(e)
     }
-    return '/signup'
+    return { redirect: '/signup', data: null }
   }
 }
 
@@ -34,16 +38,20 @@ export const logInWithEmailAndPassword = async (
 ) => {
   try {
     await signInWithEmailAndPassword(auth, email, password)
-    await axiosClient.post('/login', {
+    const res = await axiosClient.post('/login', {
       email,
       password,
     })
-    return '/test'
+
+    return {
+      redirect: '/test',
+      data: res.data as { message: string; user: User },
+    }
   } catch (e) {
     if (e instanceof FirebaseError) {
       console.log(e)
     }
-    return '/login'
+    return { redirect: '/login', data: null }
   }
 }
 
