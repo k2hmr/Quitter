@@ -6,6 +6,17 @@ type fProps = {
   bg?: string
   color?: string
   flexDirection?: ResponsiveValue<'column' | 'row'>
+  gridGap?: ResponsiveValue<
+    | number
+    | (string & {})
+    | 'px'
+    | '-moz-initial'
+    | 'inherit'
+    | 'initial'
+    | 'revert'
+    | 'revert-layer'
+    | 'unset'
+  >
   children: ReactNode
 }
 
@@ -14,6 +25,7 @@ export const AppFlex: React.FC<fProps> = ({
   bg,
   color,
   flexDirection,
+  gridGap,
   children,
   ...rest
 }) => (
@@ -23,6 +35,7 @@ export const AppFlex: React.FC<fProps> = ({
     bg={bg}
     color={color}
     flexDirection={flexDirection}
+    gridGap={gridGap}
     {...rest}
   >
     {children}

@@ -21,7 +21,7 @@ export const registerWithEmailAndPassword = async (
       password,
     })
     return {
-      redirect: '/test',
+      redirect: '/themes',
       data: res.data as { message: string; user: User },
     }
   } catch (e) {
@@ -44,7 +44,7 @@ export const logInWithEmailAndPassword = async (
     })
 
     return {
-      redirect: '/test',
+      redirect: '/themes',
       data: res.data as { message: string; user: User },
     }
   } catch (e) {
