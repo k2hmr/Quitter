@@ -1,8 +1,8 @@
 import NavBar from '@/components/layout/organisms/NavBar'
+import ActiveThemesPage from '@/components/pages/ActiveThemesPage'
 import LoginPage from '@/components/pages/LoginPage'
 import { MyPage } from '@/components/pages/MyPage'
 import { NotFoundPage } from '@/components/pages/NotFoundPage'
-import PostTemplatesListPage from '@/components/pages/PostTemplatesListPage'
 import SignupPage from '@/components/pages/SignupPage'
 import { Route, Routes } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
@@ -18,7 +18,7 @@ export const RouterConfig = () => {
             path="themes"
             element={
               <RouterAuthenticatedCheck
-                component={<PostTemplatesListPage />}
+                component={<ActiveThemesPage />}
                 redirect={'/login'}
               />
             }
