@@ -15,14 +15,17 @@ export const registerWithEmailAndPassword = async (
 ) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password)
-    const res = await axiosClient.post('/register', {
+    const res = await axiosClient.post<{
+      redirect: string
+      data: { message: string; user: User } | null
+    }>('/register', {
       name,
       email,
       password,
     })
     return {
       redirect: '/themes',
-      data: res.data as { message: string; user: User },
+      data: res.data,
     }
   } catch (e) {
     if (e instanceof FirebaseError) {
@@ -38,14 +41,17 @@ export const logInWithEmailAndPassword = async (
 ) => {
   try {
     await signInWithEmailAndPassword(auth, email, password)
-    const res = await axiosClient.post('/login', {
+    const res = await axiosClient.post<{
+      redirect: string
+      data: { message: string; user: User } | null
+    }>('/login', {
       email,
       password,
     })
 
     return {
       redirect: '/themes',
-      data: res.data as { message: string; user: User },
+      data: res.data,
     }
   } catch (e) {
     if (e instanceof FirebaseError) {
