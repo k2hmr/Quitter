@@ -8,6 +8,14 @@ import {
   signOut,
 } from 'firebase/auth'
 
+type UserResponse = {
+  _id: { idName: string; value: string }
+  name: string
+  email: string
+  password: string
+  createdAt: Date
+}
+
 export const registerWithEmailAndPassword = async (
   name: string,
   email: string,
@@ -15,14 +23,27 @@ export const registerWithEmailAndPassword = async (
 ) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password)
-    const res = await axiosClient.post('/register', {
+    const res = await axiosClient.post<{
+      redirect: string
+      message: string
+      user: UserResponse
+    }>('/register', {
       name,
       email,
       password,
     })
     return {
       redirect: '/themes',
-      data: res.data as { message: string; user: User },
+      data: {
+        message: res.data.message,
+        user: {
+          id: res.data.user._id.value,
+          name: res.data.user.name,
+          email: res.data.user.email,
+          password: res.data.user.password,
+          createdAt: res.data.user.createdAt,
+        } as User,
+      },
     }
   } catch (e) {
     if (e instanceof FirebaseError) {
@@ -38,14 +59,27 @@ export const logInWithEmailAndPassword = async (
 ) => {
   try {
     await signInWithEmailAndPassword(auth, email, password)
-    const res = await axiosClient.post('/login', {
+    const res = await axiosClient.post<{
+      redirect: string
+      message: string
+      user: UserResponse
+    }>('/login', {
       email,
       password,
     })
 
     return {
       redirect: '/themes',
-      data: res.data as { message: string; user: User },
+      data: {
+        message: res.data.message,
+        user: {
+          id: res.data.user._id.value,
+          name: res.data.user.name,
+          email: res.data.user.email,
+          password: res.data.user.password,
+          createdAt: res.data.user.createdAt,
+        } as User,
+      },
     }
   } catch (e) {
     if (e instanceof FirebaseError) {
