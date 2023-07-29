@@ -3,6 +3,17 @@ import { ReactNode } from 'react'
 
 type fProps = {
   pos?: string
+  h?: ResponsiveValue<
+    | number
+    | (string & {})
+    | 'px'
+    | '-moz-initial'
+    | 'inherit'
+    | 'initial'
+    | 'revert'
+    | 'revert-layer'
+    | 'unset'
+  >
   bg?: string
   color?: string
   flexDirection?: ResponsiveValue<'column' | 'row'>
@@ -22,6 +33,7 @@ type fProps = {
 
 export const AppFlex: React.FC<fProps> = ({
   pos,
+  h,
   bg,
   color,
   flexDirection,
@@ -32,6 +44,7 @@ export const AppFlex: React.FC<fProps> = ({
   <Flex
     justify={pos}
     align={pos}
+    h={h}
     bg={bg}
     color={color}
     flexDirection={flexDirection}
