@@ -1,20 +1,21 @@
+import { priorities } from '@/model/priority'
 import { fetchThemes } from '@/services/themeService'
 import { UserContext } from '@/store/userContext'
 import { useQuery } from '@tanstack/react-query'
 import { formatDistance } from 'date-fns'
 import { ja } from 'date-fns/locale'
 import { useContext } from 'react'
-import { AppButton } from '../layout/atom/Button'
 import { Div } from '../layout/atom/Div'
 import { AppFlex } from '../layout/atom/Flex'
 import { Header } from '../layout/atom/Header'
+import { AppLink } from '../layout/atom/Link'
 import colors from '../layout/styles/colors'
 
 const ActiveThemesPage = () => {
   const { user } = useContext(UserContext)
   const { data: themes, status } = useQuery(
     ['themes'],
-    async () => user && fetchThemes(user.id),
+    async () => user && (await fetchThemes(user.id)),
   )
 
   const toTimeAgo = (date: Date) => {
@@ -35,21 +36,22 @@ const ActiveThemesPage = () => {
   }
 
   return (
-    <AppFlex flexDirection={'column'}>
-      <AppButton>新しいテーマを作成する</AppButton>
+    <AppFlex flexDirection={'column'} bg={colors.secondary[50]}>
+      <AppLink to={'/new-theme'}>新しいテーマを作成する</AppLink>
       <Div>取り組んでいるテーマ</Div>
-      <AppFlex gridGap={2} flexDirection={'column'}>
-        {!themes ? (
-          <Div>取り組み中のテーマがありません。</Div>
-        ) : (
+      <AppFlex gridGap={4} flexDirection={'column'}>
+        {themes ? (
           themes.map((theme, i) => (
             <Div bg={colors.primary[100]} p={2} key={i}>
               <Header>{theme.theme}</Header>
               {/* TODO: カテゴリを表示 */}
-              <Div>{theme.priority}</Div>
+              <Div>カテゴリ</Div>
+              <Div>{priorities[theme.priority - 1].label}</Div>
               <Div>作成日：{toTimeAgo(theme.createdAt)}</Div>
             </Div>
           ))
+        ) : (
+          <Div>取り組み中のテーマがありません。</Div>
         )}
       </AppFlex>
     </AppFlex>
