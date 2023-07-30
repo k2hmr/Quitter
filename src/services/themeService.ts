@@ -25,7 +25,7 @@ export const addTheme = async (
     const res = await axiosClient.post<{
       message: string
       theme: ThemeResponse
-    }>('/create-theme', {
+    }>('/themes', {
       theme,
       categoryId,
       priority,
