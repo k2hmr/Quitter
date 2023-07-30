@@ -34,7 +34,6 @@ export const addTheme = async (
       userId,
     })
 
-    console.log(res.data.message)
     return {
       redirect: '/themes',
       data: {
@@ -81,7 +80,6 @@ export const fetchThemes = async (userId: string) => {
       }
     })
 
-    console.log(res.data.message)
     return themes
   } catch (error) {
     console.log(error)
